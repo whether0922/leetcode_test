@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include "treeNode.h"
+#include "N_tree.h"
 using namespace std;
 
 void solve_preorderTraversal(TreeNode* root, vector<int>& res)
@@ -30,6 +31,20 @@ vector<int> postorderTraversal(TreeNode* root) {
 	// ∫Û–Ú±È¿˙
 	vector<int> res;
 	solve_postorderTraversal(root, res);
+	return res;
+}
+
+int maxDepth(Node* root) {
+	if (root == nullptr) return 0;
+	if (root->children.size() <= 0) return 1;
+	int res = 0;
+	int temp = 0;
+	for (auto node : root->children)
+	{
+		temp = 1 + maxDepth(node);
+		if (res < temp)
+			res = temp;
+	}
 	return res;
 }
 
