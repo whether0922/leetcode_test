@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 #include "treeNode.h"
 #include "N_tree.h"
 using namespace std;
@@ -48,7 +49,86 @@ int maxDepth(Node* root) {
 	return res;
 }
 
+void findAllSubstrPos(string &s, string &p, vector<int> &res)
+{
+	int idx = 0;
+	idx = s.find(p, idx);
+	while (idx != string::npos)
+	{
+		res.emplace_back(idx);
+		if (idx >= s.size() - 1)
+			break;
+		idx = s.find(p, idx + 1);
+	}
+}
+
+vector<int> findAnagrams(string s, string p) {
+	vector<int> res;
+	if (s.size() <= 0) return res;
+	if (s.size() < p.size()) return res;
+	int idx;
+	bool next_flag = true;
+	while (next_flag)
+	{
+		findAllSubstrPos(s, p, res);
+		next_flag = next_permutation(p.begin(), p.end());
+	}
+	return res;
+}
+
+string dayOfTheWeek(int day, int month, int year) {
+	int all_days = 0;
+	// 1971.1.1ÊÇÖÜÎå
+	string week_days[7] = { "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday" };
+	for (int i = 1971; i < year; i++)
+	{
+		if (i % 100 == 0 && i % 400 == 0)
+		{
+			all_days += 366;
+		}
+		else if (i % 100 != 0 && i % 4 == 0)
+		{
+			all_days += 366;
+		}
+		else
+		{
+			all_days += 365;
+		}
+	}
+	for (int i = 1; i < month; i++)
+	{
+		if (i == 2)
+		{
+			if (year % 100 == 0 && year % 400 == 0)
+			{
+				all_days += 29;
+			}
+			else if (year % 100 != 0 && year % 4 == 0)
+			{
+				all_days += 29;
+			}
+			else
+			{
+				all_days += 28;
+			}
+		}
+		else if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
+		{
+			all_days += 31;
+		}
+		else
+		{
+			all_days += 30;
+		}
+	}
+	all_days += day - 1;
+	return week_days[all_days % 7];
+}
+
 int main()
 {
+	string a = "qwertyu";
+	string b = "xxcv";
+	int x = a.find(b);
 	return 0;
 }

@@ -142,6 +142,7 @@
     <ClCompile Include="slove.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="N_tree.h" />
     <ClInclude Include="treeNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
