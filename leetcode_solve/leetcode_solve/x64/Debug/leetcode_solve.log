@@ -1,0 +1,3 @@
+﻿  slove.cpp
+E:\github_learning\Git_leetcode\leetcode_test\leetcode_solve\leetcode_solve\slove.cpp(65,19): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  leetcode_solve.vcxproj -> E:\github_learning\Git_leetcode\leetcode_test\leetcode_solve\x64\Debug\leetcode_solve.exe
