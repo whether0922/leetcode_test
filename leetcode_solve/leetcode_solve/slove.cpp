@@ -125,10 +125,27 @@ string dayOfTheWeek(int day, int month, int year) {
 	return week_days[all_days % 7];
 }
 
+string reversePrefix(string word, char ch) {
+	string res;
+	bool is_before = true;
+	if (find(word.begin(), word.end(), ch) == word.end())
+		return word;
+	for (auto c : word)
+	{
+		if (is_before)
+			res.insert(res.begin(), c);
+		else
+			res.push_back(c);
+		if (c == ch && is_before)
+			is_before = false;
+	}
+	return res;
+}
+
 int main()
 {
-	string a = "qwertyu";
-	string b = "xxcv";
-	int x = a.find(b);
+	string a = "abcd";
+	char b = 'z';
+	string x = reversePrefix(a, b);
 	return 0;
 }

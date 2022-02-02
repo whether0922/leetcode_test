@@ -1,3 +1,5 @@
 ﻿  slove.cpp
-E:\github_learning\Git_leetcode\leetcode_test\leetcode_solve\leetcode_solve\slove.cpp(65,19): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\github_learning\Git_leetcode\leetcode_test\leetcode_solve\leetcode_solve\slove.cpp(55,22): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+E:\github_learning\Git_leetcode\leetcode_test\leetcode_solve\leetcode_solve\slove.cpp(61,27): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+E:\github_learning\Git_leetcode\leetcode_test\leetcode_solve\leetcode_solve\slove.cpp(69,6): warning C4101: “idx”: 未引用的局部变量
   leetcode_solve.vcxproj -> E:\github_learning\Git_leetcode\leetcode_test\leetcode_solve\x64\Debug\leetcode_solve.exe
