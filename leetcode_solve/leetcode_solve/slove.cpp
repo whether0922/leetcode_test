@@ -142,6 +142,26 @@ string reversePrefix(string word, char ch) {
 	return res;
 }
 
+int sumOfUnique(vector<int>& nums) {
+	vector<int> alreadyIn;
+	vector<int> multiNum;
+	int res = 0;
+	for (auto num : nums)
+	{
+		if (find(alreadyIn.begin(), alreadyIn.end(), num) == alreadyIn.end() && find(multiNum.begin(), multiNum.end(), num) == multiNum.end())
+		{
+			alreadyIn.emplace_back(num);
+			res += num;
+		}
+		else if (find(alreadyIn.begin(), alreadyIn.end(), num) != alreadyIn.end() && find(multiNum.begin(), multiNum.end(), num) == multiNum.end())
+		{
+			res -= num;
+			multiNum.emplace_back(num);
+		}
+	}
+	return res;
+}
+
 int main()
 {
 	string a = "abcd";
