@@ -162,10 +162,47 @@ int sumOfUnique(vector<int>& nums) {
 	return res;
 }
 
+int maxNumberOfBalloons(string text) {
+	string aim = "balloon";
+	if (text.size() < aim.size())
+		return 0;
+	int min_num = text.size() + 1;
+	for (auto c : aim)
+	{
+		int c_num = count(text.begin(), text.end(), c);
+		int self_num = count(aim.begin(), aim.end(), c);
+		c_num = c_num / self_num;
+		if (c_num == 0)
+			return 0;
+		if (c_num < min_num)
+			min_num = c_num;
+	}
+	return min_num;
+}
+
+vector<int> goodDaysToRobBank(vector<int>& security, int time) {
+	int length = security.size();
+	vector<int> before_list(length);
+	vector<int> after_list(length);
+	for (int i = 1; i < length; i++)
+	{
+		if (security[i] <= security[i - 1])
+			before_list[i] = before_list[i - 1] + 1;
+		if (security[length - i] >= security[length - 1 - i])
+			after_list[length - 1 - i] = after_list[length - i] + 1;
+	}
+	vector<int> res;
+	for (int i = 0; i < length; i++)
+	{
+		if (before_list[i] >= time && after_list[i] >= time)
+			res.emplace_back(i);
+	}
+	return res;
+}
+
 int main()
 {
-	string a = "abcd";
-	char b = 'z';
-	string x = reversePrefix(a, b);
+	vector<int> a = { 4,3,2,1 };
+	vector<int> x = goodDaysToRobBank(a, 1);
 	return 0;
 }
