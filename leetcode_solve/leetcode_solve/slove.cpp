@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<map>
 #include<algorithm>
 #include "treeNode.h"
 #include "N_tree.h"
@@ -200,9 +201,58 @@ vector<int> goodDaysToRobBank(vector<int>& security, int time) {
 	return res;
 }
 
+map<int, int> min_res;
+
+int slove_jump(const vector<int>& nums, int index)
+{
+	if (index >= nums.size() - 1)
+		return 0;
+	if (min_res.find(index) != min_res.end())
+		return min_res[index];
+	if (nums[index] == 0)
+		return 10001;
+	int jump_num = 10001;
+	for (int i = 1; i <= nums[index]; i++)
+	{
+		int next_jump = slove_jump(nums, index + i) + 1;
+		if (jump_num > next_jump)
+			jump_num = next_jump;
+	}
+	min_res[index] = jump_num;
+	return jump_num;
+}
+
+int jump(vector<int>& nums) {
+	if (nums.size() <= 0) return 0;
+	int res = slove_jump(nums, 0);
+	return res;
+}
+
+int removeElement(vector<int>& nums, int val) {
+	vector<int>::iterator nums_ptr = find(nums.begin(), nums.end(), val);
+	int res = 0;
+	while (nums_ptr != nums.end())
+	{
+		res += 1;
+		nums.erase(nums_ptr);
+		nums_ptr = find(nums.begin(), nums.end(), val);
+	}
+	return res;
+}
+
+bool isSameTree(TreeNode* p, TreeNode* q) {
+	if (p == nullptr && q == nullptr)
+		return true;
+	if (p == nullptr || q == nullptr)
+		return false;
+	if (p->val != q->val)
+		return false;
+	return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+}
+
 int main()
 {
-	vector<int> a = { 4,3,2,1 };
-	vector<int> x = goodDaysToRobBank(a, 1);
+	vector<int> a = { 0,1,2,2,3,0,4,2 };
+	int x = removeElement(a, 2);
 	return 0;
 }
